@@ -12,7 +12,13 @@ The Passport Page of a Country That Isn't There — the Republic of Tarnmere, a 
 python3 main.py
 ```
 
-`main.py` draws the image with Pillow and writes it to `$MAKEFUN_OUTPUT_DIR/entry.png` (default `/output`). Python 3.13, standard library + Pillow only, no network; both runs write identical bytes.
+`main.py` delivers the image: it reads the bundled `assets/entry.png`, checks its bytes (PNG magic, 1024×724, under 1 MiB), and writes it to `$MAKEFUN_OUTPUT_DIR/entry.png` (default `/output`). It is standard-library only, because the grader runs it as `python3 -P -s` inside the pinned python:3.13 image, which ships no Pillow — an entrypoint importing Pillow exits 1 there. The spread itself is drawn by `draw.py` (Pillow, run on the dev machine) and ships as the bundled asset; both runs write identical bytes.
+
+## Draw it again
+
+```sh
+python3 draw.py   # writes entry.png to $MAKEFUN_OUTPUT_DIR (needs Pillow)
+```
 
 ---
 
